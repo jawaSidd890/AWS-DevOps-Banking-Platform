@@ -1,0 +1,5 @@
+helm upgrade --install banking k8s/helm-chart/banking-app
+To update version:
+helm upgrade banking k8s/helm-chart/banking-app \
+--set image.tag=2.0
+helm rollback banking
