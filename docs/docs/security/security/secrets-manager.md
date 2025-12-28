@@ -20,3 +20,13 @@ Example Secrets:
 - banking/jwt-secret
 
 This approach follows banking security and compliance standards.
+
+Secrets are stored in AWS Secrets Manager.
+
+Examples:
+- Database password
+- API keys
+- Application secrets
+
+Kubernetes retrieves secrets using IAM roles for service accounts.
+No secrets are stored in GitHub or Docker images.
