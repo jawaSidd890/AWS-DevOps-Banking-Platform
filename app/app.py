@@ -4,15 +4,22 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return jsonify({"status": "Banking App Running"})
+    return jsonify({
+        "service": "AWS DevOps Banking Platform",
+        "status": "running"
+    })
+
+@app.route("/health")
+def health():
+    return jsonify({"status": "UP"})
 
 @app.route("/balance")
 def balance():
-    return jsonify({"account": "12345", "balance": 5000})
+    return jsonify({
+        "account": "123456789",
+        "balance": 125000,
+        "currency": "INR"
+    })
 
-@app.route("/transactions")
-def transactions():
-    return jsonify(["+1000", "-500", "+200"])
+if __n
 
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
