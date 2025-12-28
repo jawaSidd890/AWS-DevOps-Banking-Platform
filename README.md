@@ -70,3 +70,34 @@ It proves hands-on skills in AWS, Kubernetes, CI/CD, infrastructure automation, 
 
 ## Resume Summary
 Built a cloud-native CI/CD platform on AWS using Terraform, Jenkins, Docker and EKS to deploy a secure banking application with centralized logging, monitoring and automated rollbacks.
+
+
+docker build -t banking-app .
+docker images
+docker run -d -p 5000:5000 banking-app
+docker ps
+
+docker run -d -p 8080:8080 jenkins/jenkins
+
+
+kubectl get pods
+kubectl get svc
+kubectl get svc banking-service
+kubectl get svc
+kubectl port-forward svc/prometheus 9090
+kubectl port-forward svc/grafana 3000
+
+aws eks update-kubeconfig --region ap-south-1 --name banking-cluster
+kubectl get nodes
+kubectl get pods
+kubectl get svc
+kubectl describe pod <pod>
+kubectl logs <pod>
+
+kubectl apply -f k8s/
+kubectl rollout status deployment/banking-app
+kubectl scale deployment banking-app --replicas=4
+kubectl rollout undo deployment/banking-app
+
+
+
