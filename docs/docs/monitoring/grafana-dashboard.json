@@ -1,0 +1,35 @@
+{
+  "title": "Banking Application - Production",
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "Pod CPU Usage",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "sum(rate(container_cpu_usage_seconds_total{pod=~\"banking.*\"}[5m]))"
+        }
+      ]
+    },
+    {
+      "type": "timeseries",
+      "title": "Pod Memory Usage",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "sum(container_memory_working_set_bytes{pod=~\"banking.*\"})"
+        }
+      ]
+    },
+    {
+      "type": "stat",
+      "title": "Running Pods",
+      "datasource": "Prometheus",
+      "targets": [
+        {
+          "expr": "count(kube_pod_status_ready{condition=\"true\",pod=~\"banking.*\"})"
+        }
+      ]
+    }
+  ]
+}
