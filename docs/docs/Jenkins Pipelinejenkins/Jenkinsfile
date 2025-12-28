@@ -1,0 +1,29 @@
+pipeline {
+  agent any
+
+  stages {
+    stage('Build') {
+      steps {
+        sh 'docker build -t banking-app .'
+      }
+    }
+
+    stage('Security Scan') {
+      steps {
+        sh 'trivy image banking-app'
+      }
+    }
+
+    stage('Push to ECR') {
+      steps {
+        sh 'echo "Push to AWS ECR here"'
+      }
+    }
+
+    stage('Deploy to EKS') {
+      steps {
+        sh 'kubectl apply -f k8s/deployment.yaml'
+      }
+    }
+  }
+}
