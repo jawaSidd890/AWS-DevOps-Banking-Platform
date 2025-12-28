@@ -1,0 +1,43 @@
+pipeline {
+    agent any
+
+    environment {
+        IMAGE_NAME = "banking-app"
+    }
+
+    stages {
+
+        stage('Checkout Code') {
+            steps {
+                git 'https://github.com/jawaSidd890/AWS-DevOps-Banking-Platform.git'
+            }
+        }
+
+        stage('Build Docker Image') {
+            steps {
+                sh 'cd app && docker build -t $IMAGE_NAME .'
+            }
+        }
+
+        stage('Run Security Scan') {
+            steps {
+                sh 'trivy image $IMAGE_NAME'
+            }
+        }
+
+        stage('Deploy to Kubernetes') {
+            steps {
+                sh 'kubectl apply -f k8s/'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "Banking application deployed successfully"
+        }
+        failure {
+            echo "Deployment failed"
+        }
+    }
+}
